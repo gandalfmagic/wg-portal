@@ -60,13 +60,23 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <div class="custom-control custom-switch">
+{{if not .IsSameUser}}
                         <input class="custom-control-input" name="isadmin" type="checkbox" value="true" id="inputAdmin" {{if .User.IsAdmin}}checked{{end}}>
+{{else}}
+                        <input class="custom-control-input" name="disabled_isadmin" type="checkbox" value="true" id="inputAdmin" {{if .User.IsAdmin}}checked{{end}} disabled>
+                        <input class="custom-control-input" name="isadmin" hidden type="checkbox" value="true" id="hiddenInputAdmin" {{if .User.IsAdmin}}checked{{end}}>
+{{end}}
                         <label class="custom-control-label" for="inputAdmin">
                             Administrator
                         </label>
                     </div>
                     <div class="custom-control custom-switch">
+{{if not .IsSameUser}}
                         <input class="custom-control-input" name="isdisabled" type="checkbox" value="true" id="inputDisabled" {{if .User.DeletedAt.Valid}}checked{{end}}>
+{{else}}
+                        <input class="custom-control-input" name="disabled_isdisabled" type="checkbox" value="true" id="inputDisabled" {{if .User.DeletedAt.Valid}}checked{{end}} disabled>
+                        <input class="custom-control-input" name="isdisabled" hidden type="checkbox" value="true" id="hiddenInputDisabled" {{if .User.DeletedAt.Valid}}checked{{end}}>
+{{end}}
                         <label class="custom-control-label" for="inputDisabled">
                             Disabled
                         </label>

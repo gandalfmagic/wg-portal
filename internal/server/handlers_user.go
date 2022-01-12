@@ -76,6 +76,7 @@ func (s *Server) GetAdminUsersEdit(c *gin.Context) {
 		"Session":     currentSession,
 		"Static":      s.getStaticData(),
 		"User":        currentSession.FormData.(users.User),
+		"IsSameUser":  currentSession.Email == user.Email,
 		"Device":      s.peers.GetDevice(currentSession.DeviceName),
 		"DeviceNames": s.GetDeviceNames(),
 		"Epoch":       time.Time{},
@@ -134,6 +135,22 @@ func (s *Server) PostAdminUsersEdit(c *gin.Context) {
 		formUser.DeletedAt = gorm.DeletedAt{}
 	}
 	formUser.IsAdmin = c.PostForm("isadmin") != ""
+
+	if currentUser.Email == currentSession.Email {
+		if currentUser.IsAdmin != formUser.IsAdmin {
+			_ = s.updateFormInSession(c, formUser)
+			SetFlashMessage(c, "you cannot change the 'Administrator' property of you own account", "danger")
+			c.Redirect(http.StatusSeeOther, "/admin/users/edit?pkey="+urlEncodedKey+"&formerr=bind")
+			return
+		}
+
+		if currentUser.DeletedAt.Valid != formUser.DeletedAt.Valid {
+			_ = s.updateFormInSession(c, formUser)
+			SetFlashMessage(c, "you cannot change the 'Disabled' property of you own account", "danger")
+			c.Redirect(http.StatusSeeOther, "/admin/users/edit?pkey="+urlEncodedKey+"&formerr=bind")
+			return
+		}
+	}
 
 	if err := s.UpdateUser(formUser); err != nil {
 		_ = s.updateFormInSession(c, formUser)
