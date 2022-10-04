@@ -71,6 +71,7 @@ func SetupRoutes(s *Server) {
 	admin.GET("/users/create", s.GetAdminUsersCreate)
 	admin.POST("/users/create", s.PostAdminUsersCreate)
 	admin.GET("/users/edit", s.GetAdminUsersEdit)
+	admin.GET("/users/delete", s.GetAdminUsersDelete)
 	admin.POST("/users/edit", s.PostAdminUsersEdit)
 
 	// User routes
@@ -82,6 +83,13 @@ func SetupRoutes(s *Server) {
 	user.GET("/download", s.GetPeerConfig)
 	user.GET("/email", s.GetPeerConfigMail)
 	user.GET("/status", s.GetPeerStatus)
+
+	if s.config.WG.UserManagePeers {
+		user.GET("/peer/create", s.GetUserCreatePeer)
+		user.POST("/peer/create", s.PostUserCreatePeer)
+		user.GET("/peer/edit", s.GetUserEditPeer)
+		user.POST("/peer/edit", s.PostUserEditPeer)
+	}
 }
 
 func SetupApiRoutes(s *Server) {
