@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	git.prolicht.digital/pub/healthcheck v1.0.1
-	github.com/coreos/go-oidc/v3 v3.1.0
+	github.com/coreos/go-oidc/v3 v3.4.0
 	github.com/dchest/uniuri v0.0.0-20200228104902-7aecb25e1fe5 // indirect
 	github.com/evanphx/json-patch v0.5.2
 	github.com/gin-contrib/sessions v0.0.5
@@ -14,10 +14,7 @@ require (
 	github.com/go-openapi/swag v0.21.1 // indirect
 	github.com/go-playground/validator/v10 v10.11.0
 	github.com/go-test/deep v1.0.8 // indirect
-	github.com/gofrs/uuid v4.2.0+incompatible
-	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/google/go-cmp v0.5.8 // indirect
-	github.com/gorilla/sessions v1.2.1 // indirect
+	github.com/gofrs/uuid v4.0.0+incompatible
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/mailru/easyjson v0.7.7 // indirect
@@ -33,13 +30,8 @@ require (
 	github.com/utrack/gin-csrf v0.0.0-20190424104817-40fb8d2c8fca
 	github.com/xhit/go-simple-mail/v2 v2.11.0
 	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e
-	golang.org/x/net v0.0.0-20220526153639-5463443f8c37 // indirect
-	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8
-	golang.org/x/sync v0.0.0-20220513210516-0976fa681c29 // indirect
-	golang.org/x/tools v0.1.5 // indirect
-	golang.zx2c4.com/wireguard v0.0.20200121 // indirect
+	golang.org/x/oauth2 v0.0.0-20220822191816-0ebed06d0094
 	golang.zx2c4.com/wireguard/wgctrl v0.0.0-20220504211119-3d4a969bb56b
-	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0
 	gorm.io/driver/mysql v1.3.3
 	gorm.io/driver/sqlite v1.3.2
